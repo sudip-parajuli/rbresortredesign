@@ -3,5 +3,3 @@ scraped_data/
 .system_generated/
 .tempmediaStorage/
 *.log
-*.png
-*.webp
