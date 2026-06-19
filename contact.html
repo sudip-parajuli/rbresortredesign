@@ -6,6 +6,10 @@
   <meta name="description" content="Get in touch with Kwality Beach Resort in Mulkot, Sindhuli. Book rooms, plan seminars or events, and send inquiries.">
   <title>Contact Us - Kwality Beach Resort</title>
   
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -18,7 +22,6 @@
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <img src="images/Kwality Beach Resort.jpg" alt="Kwality Beach Resort Logo">
         <span class="logo-text">KB Resort</span>
       </a>
       <ul class="nav-links">
@@ -28,7 +31,7 @@
         <li><a href="events.html">Meeting & Events</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html" class="active">Contact Us</a></li>
-        <li><a href="contact.html" class="btn btn-book">Book Now</a></li>
+        <li><a href="contact.html" class="btn-book">Book Now</a></li>
       </ul>
       <button class="mobile-menu-btn" aria-label="Toggle Menu">
         <i class="fas fa-bars"></i>
@@ -36,64 +39,79 @@
     </div>
   </header>
 
+  <!-- Fullscreen Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="accommodation.html">Accommodation</a></li>
+      <li><a href="dining.html">Restro & Bar</a></li>
+      <li><a href="events.html">Meeting & Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="active">Contact Us</a></li>
+      <li><a href="contact.html" class="btn-book" style="margin-top: 1rem;">Book Now</a></li>
+    </ul>
+  </div>
+
   <!-- Page Header Banner -->
   <section class="page-header" style="background-image: url('images/contactus.webp');">
-    <div class="page-header-content">
+    <div class="page-header-content reveal">
+      <span class="breadcrumb"><a href="index.html">Home</a> Contact Us</span>
       <h1>Contact Us</h1>
-      <div class="breadcrumb">
-        <a href="index.html">Home</a> Contact Us
-      </div>
     </div>
   </section>
 
   <!-- Contact Grid Section -->
-  <section class="section">
+  <section class="section bg-warm-ivory">
     <div class="container">
       <div class="contact-grid">
         
         <!-- Left Column: Resort Contact Info -->
-        <div class="contact-info-panel">
-          <h2>Get in Touch</h2>
-          <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.8; margin-top: 1rem;">
-            Kwality Beach Resort is a place where you can discover nature, experience leisure and live in harmony with it. We care about your opinion. Talk to our sales team for room and amenities packages.
-          </p>
-          
-          <ul class="contact-details">
-            <li>
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <strong>Mulkot Resort</strong>
-                <p>Mulkot, Sindhuli-05, Nepal</p>
-              </div>
-            </li>
-            <li>
-              <i class="fas fa-phone-alt"></i>
-              <div>
-                <strong>Call Us</strong>
-                <p>+977-9865369090, 9865369093</p>
-                <p>047-590091, 047-590092</p>
-              </div>
-            </li>
-            <li>
-              <i class="fas fa-envelope"></i>
-              <div>
-                <strong>Email Address</strong>
-                <p>sales@kbresort.com.np</p>
-              </div>
-            </li>
-          </ul>
+        <div class="contact-info-panel reveal delay-1">
+          <div>
+            <span class="section-label">GET IN TOUCH</span>
+            <h2>Connect With Us</h2>
+            <p style="color: rgba(232, 224, 208, 0.85); line-height: 1.8; margin-top: 1rem;">
+              Kwality Beach Resort is a place where you can discover nature, experience leisure and live in harmony with it. We care about your opinion. Talk to our sales team for room and amenities packages.
+            </p>
+            
+            <ul class="contact-details">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <strong>Mulkot Resort</strong>
+                  <p>Mulkot, Sindhuli-05, Nepal</p>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <div>
+                  <strong>Call Us</strong>
+                  <p>+977-9865369090, 9865369093</p>
+                  <p>047-590091, 047-590092</p>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <strong>Email Address</strong>
+                  <p>sales@kbresort.com.np</p>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-          <div class="social-links">
-            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+          <div class="social-links" style="margin-top: 1.5rem;">
+            <a href="https://www.facebook.com/kbresort" class="social-icon" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/kbresort" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@kbresort" class="social-icon" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
 
         <!-- Right Column: Inquiry/Booking Form -->
-        <div class="contact-form-panel">
+        <div class="form-panel contact-form-panel reveal delay-2">
+          <span class="section-label">INQUIRY FORM</span>
           <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Reservation Inquiry</h2>
-          <p style="margin-bottom: 1.5rem;">Contact us with your comments, requests and suggestions.</p>
+          <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Contact us with your comments, requests and suggestions.</p>
           
           <form id="inquiry-form" action="#">
             <div class="form-group">
@@ -143,12 +161,13 @@
   </section>
 
   <!-- Google Maps Embed Section -->
-  <section class="section" style="padding-top: 0;">
+  <section class="section bg-warm-ivory" style="padding-top: 0;">
     <div class="container">
-      <div style="margin-bottom: var(--spacing-md);">
-        <h2>Locate us on Google Map</h2>
+      <div class="reveal" style="margin-bottom: 2rem; text-align: center;">
+        <span class="section-label center-title">LOCATION</span>
+        <h2 class="center-title">Locate Us on Google Map</h2>
       </div>
-      <div class="map-section">
+      <div class="map-section reveal">
         <iframe src="https://maps.google.com/maps?q=Mulkot,%20Sindhuli,%20Nepal&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Google Map location of Kwality Beach Resort"></iframe>
       </div>
     </div>
@@ -164,9 +183,9 @@
           A premium getaway in Mulkot, Sindhuli, offering comfort, natural river-side beauty, and exceptional hospitality.
         </p>
         <div class="social-links" style="margin-top: 1.5rem;">
-          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+          <a href="https://www.facebook.com/kbresort" class="social-icon" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/kbresort" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@kbresort" class="social-icon" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
       <!-- Col 2 -->
@@ -188,16 +207,21 @@
         <p><i class="fas fa-envelope" style="color: var(--color-accent); margin-right: 0.5rem;"></i> sales@kbresort.com.np</p>
         <p><i class="fas fa-phone-alt" style="color: var(--color-accent); margin-right: 0.5rem;"></i> +977-9865369090, 9865369093</p>
         <p><i class="fas fa-phone-alt" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 047-590091, 047-590092</p>
-        
-        <h3 style="margin-top: 2rem; font-size: 1.1rem;">Subscribe Newsletter</h3>
-        <form class="newsletter-form" action="#" onsubmit="alert('Thank you for subscribing!'); return false;">
+      </div>
+      <!-- Col 4 -->
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p style="margin-top: 1rem; line-height: 1.7; max-width: 300px; margin-bottom: 1.5rem;">
+          Subscribe to our newsletter for seasonal offers, events, and updates from the resort.
+        </p>
+        <form class="newsletter-form" action="#">
           <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
           <button class="newsletter-btn" type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
         </form>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>Copyright &copy; 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i></p>
+      <p>© 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i></p>
     </div>
   </footer>
 

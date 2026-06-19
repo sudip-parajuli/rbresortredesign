@@ -1,30 +1,148 @@
 document.addEventListener('DOMContentLoaded', () => {
+
   // ==========================================
-  // 1. STICKY HEADER EFFECT
+  // 1. PAGE TRANSITIONS (GOLD SWEEP OVERLAY)
+  // ==========================================
+  // Inject transition overlay
+  const overlayHTML = '<div class="page-transition-overlay" id="page-transition-overlay"></div>';
+  document.body.insertAdjacentHTML('beforeend', overlayHTML);
+  const transitionOverlay = document.getElementById('page-transition-overlay');
+
+  // Trigger page reveal on load
+  if (transitionOverlay) {
+    // Set scaleX(1) and scale down to 0 from the right
+    transitionOverlay.style.transform = 'scaleX(1)';
+    transitionOverlay.style.transformOrigin = 'right';
+    
+    // Force reflow
+    transitionOverlay.offsetWidth;
+    
+    // Transition off-screen
+    transitionOverlay.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    transitionOverlay.style.transform = 'scaleX(0)';
+  }
+
+  // Intercept internal link clicks to trigger sweep
+  const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not([href^="tel"])');
+  internalLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetUrl = link.href;
+      
+      // Ensure it is an internal page navigation within the same origin
+      if (targetUrl && targetUrl.includes(window.location.hostname)) {
+        e.preventDefault();
+        
+        if (transitionOverlay) {
+          // Slide in from left
+          transitionOverlay.style.transformOrigin = 'left';
+          transitionOverlay.style.transform = 'scaleX(1)';
+          
+          setTimeout(() => {
+            window.location.href = targetUrl;
+          }, 500); // Match transition duration (0.5s)
+        } else {
+          window.location.href = targetUrl;
+        }
+      }
+    });
+  });
+
+
+  // ==========================================
+  // 2. HEADER SCROLL SHIFT
   // ==========================================
   const header = document.querySelector('header');
   const handleScroll = () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 80) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
   };
   window.addEventListener('scroll', handleScroll);
-  handleScroll(); // Initial check in case of refresh
+  handleScroll(); // Initial run
+
 
   // ==========================================
-  // 2. MOBILE NAVIGATION MENU
+  // 3. PARALLAX HERO BACKGROUND
+  // ==========================================
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY;
+      // Animate background translation at 0.4x scroll speed
+      window.requestAnimationFrame(() => {
+        heroBg.style.transform = `translate3d(0, ${scrollPos * 0.4}px, 0)`;
+      });
+    });
+  }
+
+
+  // ==========================================
+  // 4. STATS COUNTER STRIP COUNT-UP
+  // ==========================================
+  const statsStrip = document.querySelector('.stats-strip');
+  if (statsStrip) {
+    const statsNumbers = document.querySelectorAll('.stat-number');
+    
+    const countUp = (element) => {
+      const targetText = element.getAttribute('data-target');
+      let targetVal = parseInt(targetText);
+      let suffix = '';
+      
+      if (targetText.includes('+')) {
+        targetVal = parseInt(targetText.replace('+', ''));
+        suffix = '+';
+      } else if (targetText.includes('%')) {
+        targetVal = parseInt(targetText.replace('%', ''));
+        suffix = '%';
+      } else if (targetText === '∞') {
+        targetVal = 88; // Animate to 88, then swap to infinity
+        suffix = '∞';
+      }
+      
+      let currentVal = 0;
+      const duration = 1500; // 1.5s
+      const steps = 60;
+      const stepTime = duration / steps;
+      const increment = targetVal / steps;
+      
+      const timer = setInterval(() => {
+        currentVal += increment;
+        if (currentVal >= targetVal) {
+          clearInterval(timer);
+          element.textContent = suffix === '∞' ? '∞' : Math.round(targetVal) + suffix;
+        } else {
+          element.textContent = suffix === '∞' ? Math.round(currentVal) : Math.round(currentVal) + suffix;
+        }
+      }, stepTime);
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          statsNumbers.forEach(num => countUp(num));
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    statsObserver.observe(statsStrip);
+  }
+
+
+  // ==========================================
+  // 5. MOBILE NAVIGATION DRAWER
   // ==========================================
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const navLinks = document.querySelector('.nav-links');
+  const navDrawer = document.getElementById('mobile-nav-drawer');
   
-  if (mobileMenuBtn && navLinks) {
+  if (mobileMenuBtn && navDrawer) {
     mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      navDrawer.classList.toggle('active');
       const icon = mobileMenuBtn.querySelector('i');
       if (icon) {
-        if (navLinks.classList.contains('active')) {
+        if (navDrawer.classList.contains('active')) {
           icon.classList.remove('fa-bars');
           icon.classList.add('fa-times');
         } else {
@@ -34,93 +152,51 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        navLinks.classList.remove('active');
+    // Close mobile drawer when clicking a drawer link
+    const drawerLinks = navDrawer.querySelectorAll('a');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navDrawer.classList.remove('active');
         const icon = mobileMenuBtn.querySelector('i');
         if (icon) {
           icon.classList.remove('fa-times');
           icon.classList.add('fa-bars');
         }
+      });
+    });
+  }
+
+
+  // ==========================================
+  // 6. GLOBAL SCROLL REVEALS
+  // ==========================================
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
       }
     });
+  }, { threshold: 0.12 });
+  
+  revealElements.forEach(el => revealObserver.observe(el));
 
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const icon = mobileMenuBtn.querySelector('i');
-        if (icon) {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
-        }
-      });
-    });
-  }
 
   // ==========================================
-  // 3. HOME PAGE HERO SLIDER
+  // 7. LIGHTBOX GALLERY
   // ==========================================
-  const slides = document.querySelectorAll('.hero-slide');
-  if (slides.length > 1) {
-    let currentSlide = 0;
-    const nextSlide = () => {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    };
-    setInterval(nextSlide, 5000); // Change image every 5 seconds
-  }
-
-  // ==========================================
-  // 4. GALLERY FILTER
-  // ==========================================
-  const filterTabs = document.querySelectorAll('.filter-tab');
   const galleryItems = document.querySelectorAll('.gallery-item');
-
-  if (filterTabs.length > 0 && galleryItems.length > 0) {
-    filterTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Toggle active tab class
-        filterTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        const category = tab.dataset.filter;
-
-        galleryItems.forEach(item => {
-          if (category === 'all' || item.dataset.category === category) {
-            item.style.display = 'block';
-            setTimeout(() => {
-              item.style.opacity = '1';
-              item.style.transform = 'scale(1)';
-            }, 50);
-          } else {
-            item.style.opacity = '0';
-            item.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-              item.style.display = 'none';
-            }, 300);
-          }
-        });
-      });
-    });
-  }
-
-  // ==========================================
-  // 5. GALLERY LIGHTBOX MODAL
-  // ==========================================
-  const galleryGrid = document.querySelector('.gallery-grid');
-  if (galleryGrid) {
-    // Inject lightbox HTML dynamically
+  if (galleryItems.length > 0) {
+    // Dynamic Lightbox HTML Injection
     const lightboxHtml = `
       <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightbox-close"><i class="fas fa-times"></i></button>
-        <button class="lightbox-prev" id="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox"><i class="fas fa-times"></i></button>
+        <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous Image"><i class="fas fa-chevron-left"></i></button>
         <div class="lightbox-content">
-          <img src="" alt="Resort Image Preview" id="lightbox-img">
+          <img src="" alt="Resort Gallery Preview" id="lightbox-img">
         </div>
-        <button class="lightbox-next" id="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        <button class="lightbox-next" id="lightbox-next" aria-label="Next Image"><i class="fas fa-chevron-right"></i></button>
       </div>
     `;
     document.body.insertAdjacentHTML('beforeend', lightboxHtml);
@@ -134,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeImages = [];
     let currentImgIndex = 0;
 
-    // Get list of active images (taking into account filters)
     const updateActiveImages = () => {
       activeImages = [];
       galleryItems.forEach(item => {
@@ -145,7 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
-    // Open lightbox
     galleryItems.forEach(item => {
       item.addEventListener('click', () => {
         updateActiveImages();
@@ -154,14 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         lightboxImg.src = clickedImgSrc;
         lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Stop scroll
+        document.body.style.overflow = 'hidden';
       });
     });
 
-    // Close lightbox
     const closeLightbox = () => {
       lightbox.classList.remove('active');
-      document.body.style.overflow = ''; // Resume scroll
+      document.body.style.overflow = '';
     };
 
     lightboxClose.addEventListener('click', closeLightbox);
@@ -169,7 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === lightbox) closeLightbox();
     });
 
-    // Prev/Next Actions
     const showPrevImg = (e) => {
       e.stopPropagation();
       currentImgIndex = (currentImgIndex - 1 + activeImages.length) % activeImages.length;
@@ -185,25 +257,53 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxPrev.addEventListener('click', showPrevImg);
     lightboxNext.addEventListener('click', showNextImg);
 
-    // Keyboard navigation
+    // Keyboard handlers
     document.addEventListener('keydown', (e) => {
       if (!lightbox.classList.contains('active')) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') showPrevImg(e);
       if (e.key === 'ArrowRight') showNextImg(e);
     });
+
+    // Gallery Category filtering
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    if (filterTabs.length > 0) {
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          filterTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const category = tab.dataset.filter;
+
+          galleryItems.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+              item.style.display = 'block';
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+              }, 50);
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'scale(0.8)';
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+    }
   }
 
+
   // ==========================================
-  // 6. CONTACT FORM SUBMISSION SIMULATION
+  // 8. CONTACT FORM SUBMISSION
   // ==========================================
   const inquiryForm = document.getElementById('inquiry-form');
   if (inquiryForm) {
     inquiryForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Form validation
-      const email = document.getElementById('email').value.strip ? document.getElementById('email').value.strip() : document.getElementById('email').value.trim();
+      const email = document.getElementById('email').value.trim();
       const subject = document.getElementById('subject').value;
       const message = document.getElementById('message').value;
 
@@ -212,22 +312,45 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Hide form contents, show success message
-      const formCard = inquiryForm.closest('.contact-form-panel');
-      if (formCard) {
-        formCard.innerHTML = `
-          <div style="text-align: center; padding: var(--spacing-lg) 0;">
-            <div style="font-size: 4rem; color: var(--color-accent); margin-bottom: var(--spacing-sm);">
+      const formPanel = inquiryForm.closest('.form-panel');
+      if (formPanel) {
+        formPanel.innerHTML = `
+          <div style="text-align: center; padding: 4rem 1rem;">
+            <div style="font-size: 3rem; color: var(--color-accent); margin-bottom: 1.5rem;">
               <i class="fas fa-check-circle"></i>
             </div>
-            <h3 style="color: var(--color-primary); font-size: 1.8rem; margin-bottom: var(--spacing-sm);">Thank You For Your Query!</h3>
-            <p style="color: var(--color-text-muted); font-size: 1.1rem; line-height: 1.6; max-width: 400px; margin: 0 auto;">
-              Our customer management team has received your message and check-in dates. We will contact you back as soon as possible via email.
+            <h3 style="font-family: var(--font-heading); font-size: 2rem; color: var(--text-dark); margin-bottom: 1rem;">Thank You For Your Query</h3>
+            <p style="color: var(--text-muted); font-size: 1rem; max-width: 420px; margin: 0 auto 2rem auto; line-height: 1.7;">
+              Our customer management team has received your message. We will respond to your email as soon as possible.
             </p>
-            <button class="btn btn-primary" style="margin-top: var(--spacing-md);" onclick="window.location.reload()">Send Another Inquiry</button>
+            <button class="btn-cta btn-cta-solid" onclick="window.location.reload()">Send Another Message</button>
           </div>
         `;
       }
     });
   }
+
+
+  // ==========================================
+  // 9. FOOTER NEWSLETTER FORM SUBMIT
+  // ==========================================
+  const newsletterForm = document.querySelector('.newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = newsletterForm.querySelector('input[type="email"]');
+      if (emailInput && emailInput.value.trim()) {
+        const parentContainer = newsletterForm.parentElement;
+        newsletterForm.style.display = 'none';
+        
+        const successMsg = document.createElement('p');
+        successMsg.style.color = 'var(--color-accent)';
+        successMsg.style.fontSize = '0.9rem';
+        successMsg.style.marginTop = '1rem';
+        successMsg.textContent = 'Thank you for subscribing to our seasonal offers!';
+        parentContainer.appendChild(successMsg);
+      }
+    });
+  }
+
 });

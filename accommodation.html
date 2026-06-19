@@ -6,6 +6,10 @@
   <meta name="description" content="Explore comfortable and luxurious accommodation options at Kwality Beach Resort in Mulkot, Sindhuli.">
   <title>Accommodation - Kwality Beach Resort</title>
   
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -18,7 +22,6 @@
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <img src="images/Kwality Beach Resort.jpg" alt="Kwality Beach Resort Logo">
         <span class="logo-text">KB Resort</span>
       </a>
       <ul class="nav-links">
@@ -28,7 +31,7 @@
         <li><a href="events.html">Meeting & Events</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="contact.html" class="btn btn-book">Book Now</a></li>
+        <li><a href="contact.html" class="btn-book">Book Now</a></li>
       </ul>
       <button class="mobile-menu-btn" aria-label="Toggle Menu">
         <i class="fas fa-bars"></i>
@@ -36,115 +39,134 @@
     </div>
   </header>
 
+  <!-- Fullscreen Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="accommodation.html" class="active">Accommodation</a></li>
+      <li><a href="dining.html">Restro & Bar</a></li>
+      <li><a href="events.html">Meeting & Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="contact.html" class="btn-book" style="margin-top: 1rem;">Book Now</a></li>
+    </ul>
+  </div>
+
   <!-- Page Header Banner -->
   <section class="page-header" style="background-image: url('images/gallery.webp');">
-    <div class="page-header-content">
-      <h1>Accommodations</h1>
-      <div class="breadcrumb">
-        <a href="index.html">Home</a> Accommodation
-      </div>
+    <div class="page-header-content reveal">
+      <span class="breadcrumb"><a href="index.html">Home</a> Accommodation</span>
+      <h1>Our Sanctuary</h1>
     </div>
   </section>
 
   <!-- Rooms Listing Section -->
-  <section class="section">
+  <section class="section bg-white-luxury">
     <div class="container">
-      
-      <!-- Room 1: Sunkoshi River View Room -->
-      <div class="room-row">
-        <div class="room-gallery">
-          <img src="images/5.jpg" alt="Sunkoshi River View Room">
+      <div class="accommodation-list">
+        
+        <!-- Room 1: Sunkoshi River View Room -->
+        <div class="room-editorial-card reveal">
+          <div class="room-editorial-img-side">
+            <img src="images/5.jpg" alt="Sunkoshi River View Room Interior" loading="lazy" width="660" height="520">
+          </div>
+          <div class="room-editorial-text-side">
+            <span class="section-label">RIVER VIEW</span>
+            <h2>Sunkoshi River View Room</h2>
+            <span class="room-occupancy-label"><i class="fas fa-users" style="margin-right: 0.5rem;"></i> Max Occupancy: 2 Adults + 2 Kids</span>
+            <p>
+              Equipped with a king-sized and queen-sized bed, a private desk, and a spacious wardrobe. This room offers premium pool-side and river-side vistas so you can wake up to a relaxing, scenic backdrop.
+            </p>
+            <div class="room-tags-container">
+              <span class="room-pill-tag">King & Queen Beds</span>
+              <span class="room-pill-tag">Swimming Pool View</span>
+              <span class="room-pill-tag">River Side View</span>
+              <span class="room-pill-tag">Smart TV & Wi-Fi</span>
+              <span class="room-pill-tag">Attached Bath</span>
+              <span class="room-pill-tag">Free Breakfast</span>
+            </div>
+            <a href="contact.html" class="btn-cta btn-cta-dark-outline">Enquire Now</a>
+          </div>
         </div>
-        <div class="room-details">
-          <h2>Sunkoshi River View Room</h2>
-          <span class="room-occupancy"><i class="fas fa-users"></i> Max Occupancy: 2 Adults + 2 Kids</span>
-          <p class="room-desc">
-            The room is equipped with 1 King bed + 1 Queen bed, 1 Table chair set, wardrobe, and has a swimming pool and river side view. Ideal for families looking to wake up to a relaxing, scenic vista.
-          </p>
-          <ul class="room-amenities-list">
-            <li><i class="fas fa-check"></i> King & Queen Beds</li>
-            <li><i class="fas fa-check"></i> Swimming Pool View</li>
-            <li><i class="fas fa-check"></i> River Side View</li>
-            <li><i class="fas fa-check"></i> Smart TV & Wi-Fi</li>
-            <li><i class="fas fa-check"></i> Attached Bathroom</li>
-            <li><i class="fas fa-check"></i> Breakfast Included</li>
-            <li><i class="fas fa-check"></i> Extra Bed (on-demand)</li>
-          </ul>
-          <a href="contact.html" class="btn btn-primary" style="align-self: flex-start; margin-top: auto;">Enquire Now</a>
-        </div>
-      </div>
 
-      <!-- Room 2: Family Room -->
-      <div class="room-row">
-        <div class="room-details">
-          <h2>Family Room</h2>
-          <span class="room-occupancy"><i class="fas fa-users"></i> Max Occupancy: 3 Adults</span>
-          <p class="room-desc">
-            The room is equipped with 1 Queen bed + 1 Single bed, 1 Table chair set, wardrobe, and has a Sunkoshi River side view. A cozy and functional setup for groups or families.
-          </p>
-          <ul class="room-amenities-list">
-            <li><i class="fas fa-check"></i> Queen & Single Beds</li>
-            <li><i class="fas fa-check"></i> Sunkoshi River View</li>
-            <li><i class="fas fa-check"></i> Wardrobe & Table set</li>
-            <li><i class="fas fa-check"></i> Smart TV & Wi-Fi</li>
-            <li><i class="fas fa-check"></i> Attached Bathroom</li>
-            <li><i class="fas fa-check"></i> Breakfast Included</li>
-            <li><i class="fas fa-check"></i> Extra Bed (on-demand)</li>
-          </ul>
-          <a href="contact.html" class="btn btn-primary" style="align-self: flex-start; margin-top: auto;">Enquire Now</a>
-        </div>
-        <div class="room-gallery">
-          <img src="images/Family Room.jpg" alt="Family Room">
-        </div>
-      </div>
+        <div class="room-divider"></div>
 
-      <!-- Room 3: Deluxe Room -->
-      <div class="room-row">
-        <div class="room-gallery">
-          <img src="images/Deluxe Room-min (1)-min (1).jpg" alt="Deluxe Room">
+        <!-- Room 2: Family Room -->
+        <div class="room-editorial-card reveal">
+          <div class="room-editorial-img-side">
+            <img src="images/Family Room.jpg" alt="Family Room Interior" loading="lazy" width="660" height="520">
+          </div>
+          <div class="room-editorial-text-side">
+            <span class="section-label">FAMILY SPACE</span>
+            <h2>Family Room</h2>
+            <span class="room-occupancy-label"><i class="fas fa-users" style="margin-right: 0.5rem;"></i> Max Occupancy: 3 Adults</span>
+            <p>
+              Our family room contains one comfortable queen bed and one single bed, along with a table, chair, and large wardrobe. Featuring side views of the Sunkoshi River, this room is perfect for small families or close groups.
+            </p>
+            <div class="room-tags-container">
+              <span class="room-pill-tag">Queen & Single Beds</span>
+              <span class="room-pill-tag">Sunkoshi River View</span>
+              <span class="room-pill-tag">Table & Chair Set</span>
+              <span class="room-pill-tag">Smart TV & Wi-Fi</span>
+              <span class="room-pill-tag">Attached Bath</span>
+              <span class="room-pill-tag">Free Breakfast</span>
+            </div>
+            <a href="contact.html" class="btn-cta btn-cta-dark-outline">Enquire Now</a>
+          </div>
         </div>
-        <div class="room-details">
-          <h2>Deluxe Room</h2>
-          <span class="room-occupancy"><i class="fas fa-users"></i> Max Occupancy: 2 Adults + 1 Kid</span>
-          <p class="room-desc">
-            The room is equipped with 1 King bed, 1 Table chair set, wardrobe, and has road side BP Highway view. Offers classic deluxe comfort for couples or business travelers.
-          </p>
-          <ul class="room-amenities-list">
-            <li><i class="fas fa-check"></i> 1 King Bed</li>
-            <li><i class="fas fa-check"></i> BP Highway View</li>
-            <li><i class="fas fa-check"></i> Table & Chair Set</li>
-            <li><i class="fas fa-check"></i> Smart TV & Wi-Fi</li>
-            <li><i class="fas fa-check"></i> Attached Bathroom</li>
-            <li><i class="fas fa-check"></i> Breakfast Included</li>
-            <li><i class="fas fa-check"></i> Extra Bed (on-demand)</li>
-          </ul>
-          <a href="contact.html" class="btn btn-primary" style="align-self: flex-start; margin-top: auto;">Enquire Now</a>
-        </div>
-      </div>
 
-      <!-- Room 4: Cottage Room -->
-      <div class="room-row">
-        <div class="room-details">
-          <h2>Cottage Room</h2>
-          <span class="room-occupancy"><i class="fas fa-users"></i> Max Occupancy: 2 Adults</span>
-          <p class="room-desc">
-            The room is equipped with modern room amenities and offers the privacy of a detached cottage. Enjoy the tranquil tropical garden settings and peaceful surroundings.
-          </p>
-          <ul class="room-amenities-list">
-            <li><i class="fas fa-check"></i> Private Cottage Entry</li>
-            <li><i class="fas fa-check"></i> Tropical Garden Setting</li>
-            <li><i class="fas fa-check"></i> Modern Amenities</li>
-            <li><i class="fas fa-check"></i> Smart TV & Wi-Fi</li>
-            <li><i class="fas fa-check"></i> Attached Bathroom</li>
-            <li><i class="fas fa-check"></i> Breakfast Included</li>
-          </ul>
-          <a href="contact.html" class="btn btn-primary" style="align-self: flex-start; margin-top: auto;">Enquire Now</a>
-        </div>
-        <div class="room-gallery">
-          <img src="images/Cottage room 2-min (1) (1).jpg" alt="Cottage Room">
-        </div>
-      </div>
+        <div class="room-divider"></div>
 
+        <!-- Room 3: Deluxe Room -->
+        <div class="room-editorial-card reveal">
+          <div class="room-editorial-img-side">
+            <img src="images/Deluxe Room-min (1)-min (1).jpg" alt="Deluxe Room Interior" loading="lazy" width="660" height="520">
+          </div>
+          <div class="room-editorial-text-side">
+            <span class="section-label">DELUXE COMFORT</span>
+            <h2>Deluxe Room</h2>
+            <span class="room-occupancy-label"><i class="fas fa-users" style="margin-right: 0.5rem;"></i> Max Occupancy: 2 Adults + 1 Kid</span>
+            <p>
+              Complete with a king-sized bed, table set, and wardrobe, this room provides views towards the historic BP Highway. An elegant, comfortable setting tailored for couples and individual business travelers alike.
+            </p>
+            <div class="room-tags-container">
+              <span class="room-pill-tag">King Bed</span>
+              <span class="room-pill-tag">BP Highway View</span>
+              <span class="room-pill-tag">Smart TV & Wi-Fi</span>
+              <span class="room-pill-tag">Attached Bath</span>
+              <span class="room-pill-tag">Free Breakfast</span>
+            </div>
+            <a href="contact.html" class="btn-cta btn-cta-dark-outline">Enquire Now</a>
+          </div>
+        </div>
+
+        <div class="room-divider"></div>
+
+        <!-- Room 4: Cottage Room -->
+        <div class="room-editorial-card reveal">
+          <div class="room-editorial-img-side">
+            <img src="images/Cottage room 2-min (1) (1).jpg" alt="Private Cottage Room Exterior" loading="lazy" width="660" height="520">
+          </div>
+          <div class="room-editorial-text-side">
+            <span class="section-label">PRIVATE RETREAT</span>
+            <h2>Cottage Room</h2>
+            <span class="room-occupancy-label"><i class="fas fa-users" style="margin-right: 0.5rem;"></i> Max Occupancy: 2 Adults</span>
+            <p>
+              Our cottage rooms offer detached privacy, surrounding you with lush tropical resort gardens. Outfitted with state-of-the-art amenities to guarantee a relaxing and private getaway.
+            </p>
+            <div class="room-tags-container">
+              <span class="room-pill-tag">Private Cottage</span>
+              <span class="room-pill-tag">Tropical Garden View</span>
+              <span class="room-pill-tag">Modern Amenities</span>
+              <span class="room-pill-tag">Smart TV & Wi-Fi</span>
+              <span class="room-pill-tag">Attached Bath</span>
+              <span class="room-pill-tag">Free Breakfast</span>
+            </div>
+            <a href="contact.html" class="btn-cta btn-cta-dark-outline">Enquire Now</a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -158,9 +180,9 @@
           A premium getaway in Mulkot, Sindhuli, offering comfort, natural river-side beauty, and exceptional hospitality.
         </p>
         <div class="social-links" style="margin-top: 1.5rem;">
-          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+          <a href="https://www.facebook.com/kbresort" class="social-icon" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/kbresort" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@kbresort" class="social-icon" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
       <!-- Col 2 -->
@@ -182,16 +204,21 @@
         <p><i class="fas fa-envelope" style="color: var(--color-accent); margin-right: 0.5rem;"></i> sales@kbresort.com.np</p>
         <p><i class="fas fa-phone-alt" style="color: var(--color-accent); margin-right: 0.5rem;"></i> +977-9865369090, 9865369093</p>
         <p><i class="fas fa-phone-alt" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 047-590091, 047-590092</p>
-        
-        <h3 style="margin-top: 2rem; font-size: 1.1rem;">Subscribe Newsletter</h3>
-        <form class="newsletter-form" action="#" onsubmit="alert('Thank you for subscribing!'); return false;">
+      </div>
+      <!-- Col 4 -->
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p style="margin-top: 1rem; line-height: 1.7; max-width: 300px; margin-bottom: 1.5rem;">
+          Subscribe to our newsletter for seasonal offers, events, and updates from the resort.
+        </p>
+        <form class="newsletter-form" action="#">
           <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
           <button class="newsletter-btn" type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
         </form>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>Copyright &copy; 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i></p>
+      <p>© 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i></p>
     </div>
   </footer>
 

@@ -6,6 +6,10 @@
   <meta name="description" content="Dine in style at Kwality Restaurant, a premium multi-cuisine restaurant & bar at Kwality Beach Resort in Mulkot, Sindhuli.">
   <title>Restro & Bar - Kwality Beach Resort</title>
   
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -18,7 +22,6 @@
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <img src="images/Kwality Beach Resort.jpg" alt="Kwality Beach Resort Logo">
         <span class="logo-text">KB Resort</span>
       </a>
       <ul class="nav-links">
@@ -28,7 +31,7 @@
         <li><a href="events.html">Meeting & Events</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="contact.html" class="btn btn-book">Book Now</a></li>
+        <li><a href="contact.html" class="btn-book">Book Now</a></li>
       </ul>
       <button class="mobile-menu-btn" aria-label="Toggle Menu">
         <i class="fas fa-bars"></i>
@@ -36,100 +39,190 @@
     </div>
   </header>
 
+  <!-- Fullscreen Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="accommodation.html">Accommodation</a></li>
+      <li><a href="dining.html" class="active">Restro & Bar</a></li>
+      <li><a href="events.html">Meeting & Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="contact.html" class="btn-book" style="margin-top: 1rem;">Book Now</a></li>
+    </ul>
+  </div>
+
   <!-- Page Header Banner -->
   <section class="page-header" style="background-image: url('images/restro and bar.webp');">
-    <div class="page-header-content">
-      <h1>Restro & Bar</h1>
-      <div class="breadcrumb">
-        <a href="index.html">Home</a> Restro & Bar
-      </div>
+    <div class="page-header-content reveal">
+      <span class="breadcrumb"><a href="index.html">Home</a> Restro & Bar</span>
+      <h1>Gastronomy</h1>
     </div>
   </section>
 
-  <!-- Restaurant Details Section -->
-  <section class="section">
+  <!-- Restaurant Introduction -->
+  <section class="section bg-white-luxury">
     <div class="container">
-      <div class="grid-2">
-        <div>
-          <h2 class="about-title">Kwality Restaurant</h2>
-          <h3 style="color: var(--color-accent-dark); font-weight: 500; font-family: var(--font-body); font-size: 1.2rem; margin: 1rem 0;">
-            MULTI-CUISINE RESTAURANT & BAR in Mulkot, Sindhuli
+      <div class="welcome-grid">
+        <div class="reveal">
+          <span class="section-label">CULINARY EXCELLENCE</span>
+          <h2>Kwality Restaurant</h2>
+          <h3 style="color: var(--color-accent); font-weight: 500; font-family: var(--font-body); font-size: 1.1rem; margin: 1rem 0; letter-spacing: 0.05em; text-transform: uppercase;">
+            Multi-Cuisine Restaurant & Bar in Mulkot
           </h3>
           <p style="font-size: 1.1rem; line-height: 1.8;">
             Whatever you’re in the mood for, we’ve got something for everyone. Offering a selection of multi-cuisine delights, the Kwality Beach Resort’s performance in the realm of food is unrivaled.
           </p>
           <p style="line-height: 1.8;">
-            From continental classics and local delicacies to refreshing drinks crafted by our master bartender, our dining experience is designed to excite your senses. Enjoy fresh ingredients, hygienic preparation, and relaxing music in our modern dining venue.
+            From continental classics and local Nepalese delicacies to refreshing drinks crafted by our master bartender, our dining experience is designed to excite your senses. Enjoy fresh ingredients, hygienic preparation, and relaxing music in our modern dining venue.
           </p>
-          <a href="contact.html" class="btn btn-primary" style="margin-top: 1rem;">Book a Table</a>
         </div>
-        <div class="about-img">
-          <img src="images/restro and bar.webp" alt="Restro and Bar Interior">
+        <div class="welcome-img-container reveal delay-2">
+          <img src="images/restro and bar.webp" alt="Restro and Bar Interior Dining Area" loading="lazy" width="540" height="480">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Menu Highlights Grid -->
-  <section class="section" style="background-color: var(--color-bg-white);">
+  <!-- Menu Specials Mosaic Grid -->
+  <section class="section bg-warm-ivory">
     <div class="container">
-      <div class="dining-menu-title">
-        <h2 class="center-title">Our Specials & Features</h2>
-        <p style="max-width: 600px; margin: 1rem auto 0 auto; font-size: 1.1rem;">Take a look at our delicious menu options and features below.</p>
+      <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+        <span class="section-label center-title">OUR SPECIALS</span>
+        <h2 class="center-title">Culinary Highlights</h2>
+        <p style="max-width: 600px; margin: 1rem auto 0 auto; color: var(--text-muted);">Take a look at our delicious menu options and specials below.</p>
       </div>
 
-      <div class="dining-grid">
-        <!-- Item 1 -->
-        <div class="dining-card">
-          <div class="dining-card-img">
-            <img src="images/restaurant photo_2.jpg" alt="Tasty Dishes">
-          </div>
-          <div class="dining-card-body">
+      <div class="dining-mosaic">
+        <!-- Card 1 (Taller, spans 2 rows) -->
+        <div class="dining-mosaic-card reveal delay-1">
+          <img src="images/restaurant photo_2.jpg" alt="Tasty Dishes Plate" class="dining-mosaic-img" loading="lazy" width="600" height="800">
+          <div class="dining-mosaic-content">
             <h3>Multi-Cuisine Delights</h3>
             <p>A broad spectrum of flavors ranging from local Nepali thali to Indian, Chinese, and Continental dishes.</p>
           </div>
         </div>
 
-        <!-- Item 2 -->
-        <div class="dining-card">
-          <div class="dining-card-img">
-            <img src="images/restaurant photo_7.jpg" alt="Poolside Bar Drinks">
-          </div>
-          <div class="dining-card-body">
+        <!-- Card 2 -->
+        <div class="dining-mosaic-card reveal delay-2">
+          <img src="images/restaurant photo_7.jpg" alt="Poolside Bar Drinks" class="dining-mosaic-img" loading="lazy" width="600" height="400">
+          <div class="dining-mosaic-content">
             <h3>Cocktails & Mocktails</h3>
-            <p>Sip on our expertly crafted, refreshing cocktails and mocktails while sitting by the Sunkoshi river side or pool side bar.</p>
+            <p>Sip on our expertly crafted, refreshing drinks by the poolside bar.</p>
           </div>
         </div>
 
-        <!-- Item 3 -->
-        <div class="dining-card">
-          <div class="dining-card-img">
-            <img src="images/restro and bar.webp" alt="Buffet Dinner">
-          </div>
-          <div class="dining-card-body">
+        <!-- Card 3 -->
+        <div class="dining-mosaic-card reveal delay-3">
+          <img src="images/restro and bar.webp" alt="Buffet Dinner Setup" class="dining-mosaic-img" loading="lazy" width="600" height="400">
+          <div class="dining-mosaic-content">
             <h3>Buffet Dinner & BBQ</h3>
-            <p>Savor a luxurious buffet dinner and hot, smoky BBQ prepared fresh by our culinary experts.</p>
+            <p>Savor a luxurious buffet dinner and hot, smoky BBQ prepared fresh.</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Amenities badge cloud -->
-      <div style="text-align: center; margin-top: var(--spacing-lg);">
-        <h3 style="font-family: var(--font-body); font-weight: 500; font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--color-primary);">Outstanding Features Available</h3>
-        <div class="dining-amenities-cloud">
-          <span class="dining-badge"><i class="fas fa-beer" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Cocktails/Mocktails</span>
-          <span class="dining-badge"><i class="fas fa-utensils" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Buffet Dinner</span>
-          <span class="dining-badge"><i class="fas fa-fire" style="color: var(--color-accent); margin-right: 0.5rem;"></i> BBQ Special</span>
-          <span class="dining-badge"><i class="fas fa-bread-slice" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Fresh Bakery Items</span>
-          <span class="dining-badge"><i class="fas fa-pepper-hot" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Authentic Local Food</span>
-          <span class="dining-badge"><i class="fas fa-ice-cream" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Desserts</span>
-          <span class="dining-badge"><i class="fas fa-child" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Kids Special Menu</span>
-          <span class="dining-badge"><i class="fas fa-wifi" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Free High-speed Wi-Fi</span>
-          <span class="dining-badge"><i class="fas fa-music" style="color: var(--color-accent); margin-right: 0.5rem;"></i> Soft Relaxing Music</span>
-          <span class="dining-badge"><i class="fas fa-shield-virus" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 100% Hygienic Food</span>
-        </div>
+  <!-- Icon Grid Features Section -->
+  <section class="section bg-white-luxury">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+        <span class="section-label center-title">OUTSTANDING SERVICES</span>
+        <h2 class="center-title">Dining Amenities</h2>
+        <p style="max-width: 600px; margin: 1rem auto 0 auto; color: var(--text-muted);">Everything you need for a comfortable, premium dining experience.</p>
       </div>
 
+      <div class="dining-features-grid reveal">
+        <!-- Feature 1: Cocktails/Mocktails -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 21V12M12 12l9-8H3l9 8zM6 8h12"/></svg>
+          </div>
+          <span class="dining-feature-name">Cocktails</span>
+        </div>
+
+        <!-- Feature 2: Buffet Dinner -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 14a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6-4h-2M8 12H6m6-6v2m0 8v2"/></svg>
+          </div>
+          <span class="dining-feature-name">Buffet Dinner</span>
+        </div>
+
+        <!-- Feature 3: BBQ -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 3.5 3.5z"/></svg>
+          </div>
+          <span class="dining-feature-name">BBQ Grill</span>
+        </div>
+
+        <!-- Feature 4: Bakery Items -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="dining-feature-name">Bakery Items</span>
+        </div>
+
+        <!-- Feature 5: Local Food -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9h18a9 9 0 0 0-9-9zM3 12v3a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-3M12 18v3"/></svg>
+          </div>
+          <span class="dining-feature-name">Local Food</span>
+        </div>
+
+        <!-- Feature 6: Desserts -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L9 7h6zM5 12h14v7a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7zm1-5h12v5H6z"/></svg>
+          </div>
+          <span class="dining-feature-name">Desserts</span>
+        </div>
+
+        <!-- Feature 7: Kids Special -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+          </div>
+          <span class="dining-feature-name">Kids Menu</span>
+        </div>
+
+        <!-- Feature 8: Free Wi-Fi -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14 0M8.53 16.11a6 6 0 0 1 6.94 0M12 20h.01"/></svg>
+          </div>
+          <span class="dining-feature-name">Free Wi-Fi</span>
+        </div>
+
+        <!-- Feature 9: Soft Music -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M9 9l12-2M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>
+          </div>
+          <span class="dining-feature-name">Soft Music</span>
+        </div>
+
+        <!-- Feature 10: 100% Hygienic Food -->
+        <div class="dining-feature-item">
+          <div class="dining-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 11l2 2 4-4"/></svg>
+          </div>
+          <span class="dining-feature-name">Hygienic Food</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dine With Us CTA Banner -->
+  <section class="dining-cta-banner reveal">
+    <div class="container">
+      <h2>Dine With Us Tonight</h2>
+      <p>Reserve your table in advance to guarantee the best views of the Sunkoshi River side.</p>
+      <a href="contact.html" class="btn-cta btn-cta-solid">Book a Table</a>
     </div>
   </section>
 
@@ -143,9 +236,9 @@
           A premium getaway in Mulkot, Sindhuli, offering comfort, natural river-side beauty, and exceptional hospitality.
         </p>
         <div class="social-links" style="margin-top: 1.5rem;">
-          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+          <a href="https://www.facebook.com/kbresort" class="social-icon" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/kbresort" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@kbresort" class="social-icon" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
       <!-- Col 2 -->
@@ -167,16 +260,21 @@
         <p><i class="fas fa-envelope" style="color: var(--color-accent); margin-right: 0.5rem;"></i> sales@kbresort.com.np</p>
         <p><i class="fas fa-phone-alt" style="color: var(--color-accent); margin-right: 0.5rem;"></i> +977-9865369090, 9865369093</p>
         <p><i class="fas fa-phone-alt" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 047-590091, 047-590092</p>
-        
-        <h3 style="margin-top: 2rem; font-size: 1.1rem;">Subscribe Newsletter</h3>
-        <form class="newsletter-form" action="#" onsubmit="alert('Thank you for subscribing!'); return false;">
+      </div>
+      <!-- Col 4 -->
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p style="margin-top: 1rem; line-height: 1.7; max-width: 300px; margin-bottom: 1.5rem;">
+          Subscribe to our newsletter for seasonal offers, events, and updates from the resort.
+        </p>
+        <form class="newsletter-form" action="#">
           <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
           <button class="newsletter-btn" type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
         </form>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>Copyright &copy; 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i></p>
+      <p>© 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i></p>
     </div>
   </footer>
 

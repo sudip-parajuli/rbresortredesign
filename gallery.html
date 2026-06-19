@@ -6,6 +6,10 @@
   <meta name="description" content="View the photo gallery of Kwality Beach Resort, showing our rooms, restaurant, event halls, and Sunkoshi river activities.">
   <title>Gallery - Kwality Beach Resort</title>
   
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -18,7 +22,6 @@
   <header>
     <div class="container nav-container">
       <a href="index.html" class="logo">
-        <img src="images/Kwality Beach Resort.jpg" alt="Kwality Beach Resort Logo">
         <span class="logo-text">KB Resort</span>
       </a>
       <ul class="nav-links">
@@ -28,7 +31,7 @@
         <li><a href="events.html">Meeting & Events</a></li>
         <li><a href="gallery.html" class="active">Gallery</a></li>
         <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="contact.html" class="btn btn-book">Book Now</a></li>
+        <li><a href="contact.html" class="btn-book">Book Now</a></li>
       </ul>
       <button class="mobile-menu-btn" aria-label="Toggle Menu">
         <i class="fas fa-bars"></i>
@@ -36,22 +39,33 @@
     </div>
   </header>
 
+  <!-- Fullscreen Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="accommodation.html">Accommodation</a></li>
+      <li><a href="dining.html">Restro & Bar</a></li>
+      <li><a href="events.html">Meeting & Events</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="contact.html" class="btn-book" style="margin-top: 1rem;">Book Now</a></li>
+    </ul>
+  </div>
+
   <!-- Page Header Banner -->
   <section class="page-header" style="background-image: url('images/gallery.webp');">
-    <div class="page-header-content">
-      <h1>Gallery</h1>
-      <div class="breadcrumb">
-        <a href="index.html">Home</a> Gallery
-      </div>
+    <div class="page-header-content reveal">
+      <span class="breadcrumb"><a href="index.html">Home</a> Gallery</span>
+      <h1>Visions</h1>
     </div>
   </section>
 
   <!-- Gallery Grid Section -->
-  <section class="section">
+  <section class="section bg-white-luxury">
     <div class="container">
       
       <!-- Category Filter Tabs -->
-      <ul class="gallery-filter-tabs">
+      <ul class="gallery-filter-tabs reveal">
         <li class="filter-tab active" data-filter="all">All</li>
         <li class="filter-tab" data-filter="rooms">Rooms</li>
         <li class="filter-tab" data-filter="dining">Dining</li>
@@ -60,69 +74,69 @@
       </ul>
 
       <!-- Photos Grid -->
-      <div class="gallery-grid">
+      <div class="gallery-grid reveal">
         
         <!-- Rooms Category -->
         <div class="gallery-item" data-category="rooms">
-          <img src="images/5.jpg" alt="Sunkoshi River View Room">
+          <img src="images/5.jpg" alt="Sunkoshi River View Room Interior" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="rooms">
-          <img src="images/Cottage room 2-min (1) (1).jpg" alt="Cottage Room Garden View">
+          <img src="images/Cottage room 2-min (1) (1).jpg" alt="Cottage Room Garden View" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="rooms">
-          <img src="images/Deluxe Room-min (1)-min (1).jpg" alt="Deluxe Room Interior">
+          <img src="images/Deluxe Room-min (1)-min (1).jpg" alt="Deluxe Room Interior Setup" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="rooms">
-          <img src="images/Family Room.jpg" alt="Spacious Family Room">
+          <img src="images/Family Room.jpg" alt="Spacious Family Room Layout" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
 
         <!-- Dining Category -->
         <div class="gallery-item" data-category="dining">
-          <img src="images/restaurant photo_2.jpg" alt="Resort Multi-cuisine Plate">
+          <img src="images/restaurant photo_2.jpg" alt="Resort Multi-cuisine Plate Serving" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="dining">
-          <img src="images/restaurant photo_7.jpg" alt="Cocktails at the Bar">
+          <img src="images/restaurant photo_7.jpg" alt="Cocktails and Drinks at the Bar Counter" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="dining">
-          <img src="images/restro and bar.webp" alt="Bar & Dining Lounge">
+          <img src="images/restro and bar.webp" alt="Bar & Dining Lounge Interior" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
 
         <!-- Events Category -->
         <div class="gallery-item" data-category="events">
-          <img src="images/meetings.webp" alt="Wedding Banquet setup">
+          <img src="images/meetings.webp" alt="Wedding Banquet and Stage Setup" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="events">
-          <img src="images/meetings (1).webp" alt="Corporate Conference Room">
+          <img src="images/meetings (1).webp" alt="Corporate Conference Room Seating" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
 
         <!-- Activities / General Category -->
         <div class="gallery-item" data-category="activities">
-          <img src="images/gallery.webp" alt="Sunkoshi Beach View">
+          <img src="images/gallery.webp" alt="Sunkoshi Beach Sand View" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="activities">
-          <img src="images/gallery (1).webp" alt="Rafting Adventure on Sunkoshi">
+          <img src="images/gallery (1).webp" alt="Rafting Adventure on Sunkoshi River rapids" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="activities">
-          <img src="images/gallery (2).webp" alt="Kwality Resort Landscape">
+          <img src="images/gallery (2).webp" alt="Kwality Beach Resort Surrounding Landscape" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="activities">
-          <img src="images/gallery (4).webp" alt="Rafting Boat Landing">
+          <img src="images/gallery (4).webp" alt="Rafting Boat Landing at Riverside" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
         <div class="gallery-item" data-category="activities">
-          <img src="images/gallery (8).webp" alt="Resort Swimming Pool View">
+          <img src="images/gallery (8).webp" alt="Swimming Pool and Deck Chairs" loading="lazy" width="400" height="400">
           <div class="gallery-item-overlay"><i class="fas fa-search-plus"></i></div>
         </div>
 
@@ -141,9 +155,9 @@
           A premium getaway in Mulkot, Sindhuli, offering comfort, natural river-side beauty, and exceptional hospitality.
         </p>
         <div class="social-links" style="margin-top: 1.5rem;">
-          <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-icon" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+          <a href="https://www.facebook.com/kbresort" class="social-icon" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/kbresort" class="social-icon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@kbresort" class="social-icon" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
       <!-- Col 2 -->
@@ -165,16 +179,21 @@
         <p><i class="fas fa-envelope" style="color: var(--color-accent); margin-right: 0.5rem;"></i> sales@kbresort.com.np</p>
         <p><i class="fas fa-phone-alt" style="color: var(--color-accent); margin-right: 0.5rem;"></i> +977-9865369090, 9865369093</p>
         <p><i class="fas fa-phone-alt" style="color: var(--color-accent); margin-right: 0.5rem;"></i> 047-590091, 047-590092</p>
-        
-        <h3 style="margin-top: 2rem; font-size: 1.1rem;">Subscribe Newsletter</h3>
-        <form class="newsletter-form" action="#" onsubmit="alert('Thank you for subscribing!'); return false;">
+      </div>
+      <!-- Col 4 -->
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p style="margin-top: 1rem; line-height: 1.7; max-width: 300px; margin-bottom: 1.5rem;">
+          Subscribe to our newsletter for seasonal offers, events, and updates from the resort.
+        </p>
+        <form class="newsletter-form" action="#">
           <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
           <button class="newsletter-btn" type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
         </form>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>Copyright &copy; 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i></p>
+      <p>© 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i></p>
     </div>
   </footer>
 
