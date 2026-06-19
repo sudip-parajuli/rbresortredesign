@@ -56,7 +56,48 @@
 
   <!-- Fullscreen Hero Section -->
   <section class="hero">
-    <img src="images/hero_resort_aerial.jpg" alt="Kwality Beach Resort Aerial Landscape View" class="hero-bg" loading="eager" width="1920" height="1080">
+    <!-- Auto-playing background carousel -->
+    <div class="hero-carousel">
+      <div class="hero-slide active">
+        <img src="images/gallery.webp" alt="Sunkoshi Beach Sand View" loading="eager" width="1920" height="1080">
+      </div>
+      <div class="hero-slide">
+        <img src="images/hero_resort_aerial.jpg" alt="Kwality Beach Resort Aerial Landscape View" loading="lazy" width="1920" height="1080">
+      </div>
+      <div class="hero-slide">
+        <img src="images/hero_resort_entrance.jpg" alt="Kwality Beach Resort Entrance View" loading="lazy" width="1920" height="1080">
+      </div>
+      <div class="hero-slide">
+        <img src="images/restro and bar.webp" alt="Kwality Multi-cuisine Restaurant & Bar" loading="lazy" width="1920" height="1080">
+      </div>
+    </div>
+
+    <!-- Dots indicator -->
+    <div class="carousel-dots">
+      <div class="carousel-dot active"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+    </div>
+
+    <!-- Floating YouTube Video Panel -->
+    <div class="hero-video-panel">
+      <div class="video-label-bar">
+        <div class="pulse-dot"></div>
+        <span>Experience KB Resort</span>
+      </div>
+      <div class="video-iframe-container">
+        <iframe src="https://www.youtube.com/embed/-zFYeWXRlQg?rel=0&amp;mute=1&amp;enablejsapi=1&amp;modestbranding=1" title="Kwality Beach Resort Experience Video" allow="autoplay; encrypted-media"></iframe>
+      </div>
+      <div class="video-bottom-bar">
+        <div class="video-info">
+          <span class="video-title">Kwality Beach Resort</span>
+          <span class="video-location">Mulkot, Sindhuli</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=-zFYeWXRlQg" target="_blank" class="video-link">Watch on YouTube →</a>
+      </div>
+    </div>
+
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="section-label">MULKOT, SINDHULI • EST. 2019</span>
@@ -214,6 +255,15 @@
       <p>© 2026 Kwality Beach Resort. All Rights Reserved. Redesigned with <i class="fas fa-heart" style="color: var(--color-accent);"></i> by SIA Enterprises.</p>
     </div>
   </footer>
+
+  <!-- Sunkoshi River Wave Transition Container -->
+  <div id="river-transition" aria-hidden="true">
+    <svg id="river-svg" viewBox="0 0 1440 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="river-path-1" d="" fill="#1b4f72" opacity="0.95"/>
+      <path id="river-path-2" d="" fill="#0e3a57" opacity="0.85"/>
+      <path id="river-path-3" d="" fill="#0a2535" opacity="0.9"/>
+    </svg>
+  </div>
 
   <!-- Custom Scripts -->
   <script src="js/main.js"></script>

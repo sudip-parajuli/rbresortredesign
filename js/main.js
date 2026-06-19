@@ -1,51 +1,130 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
-  // 1. PAGE TRANSITIONS (GOLD SWEEP OVERLAY)
+  // 1. PAGE TRANSITIONS (SUNKOSHI SVG WAVE)
   // ==========================================
-  // Inject transition overlay
-  const overlayHTML = '<div class="page-transition-overlay" id="page-transition-overlay"></div>';
-  document.body.insertAdjacentHTML('beforeend', overlayHTML);
-  const transitionOverlay = document.getElementById('page-transition-overlay');
+  function initRiverTransition() {
+    const container = document.getElementById('river-transition');
+    const path1 = document.getElementById('river-path-1');
+    const path2 = document.getElementById('river-path-2');
+    const path3 = document.getElementById('river-path-3');
 
-  // Trigger page reveal on load
-  if (transitionOverlay) {
-    // Set scaleX(1) and scale down to 0 from the right
-    transitionOverlay.style.transform = 'scaleX(1)';
-    transitionOverlay.style.transformOrigin = 'right';
-    
-    // Force reflow
-    transitionOverlay.offsetWidth;
-    
-    // Transition off-screen
-    transitionOverlay.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-    transitionOverlay.style.transform = 'scaleX(0)';
-  }
+    if (!container || !path1 || !path2 || !path3) return;
 
-  // Intercept internal link clicks to trigger sweep
-  const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not([href^="tel"])');
-  internalLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const targetUrl = link.href;
+    const W = 1440, H = 900;
+    const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    function buildWavePath(xOffset, amplitude, frequency, phase, isEnter) {
+      const pts = [];
+      if (isEnter) {
+        // ENTER: wave is leading edge on the right, filled to the left (-200)
+        const waveX = xOffset + W;
+        pts.push(`M ${waveX} 0`);
+        for (let y = 0; y <= H; y += 20) {
+          const x = waveX + Math.sin((y / H) * Math.PI * frequency + phase) * amplitude;
+          pts.push(`L ${x} ${y}`);
+        }
+        pts.push(`L -200 ${H}`);
+        pts.push(`L -200 0`);
+      } else {
+        // EXIT: wave is trailing edge on the left, filled to the right (W + 200)
+        pts.push(`M ${xOffset} 0`);
+        for (let y = 0; y <= H; y += 20) {
+          const x = xOffset + Math.sin((y / H) * Math.PI * frequency + phase) * amplitude;
+          pts.push(`L ${x} ${y}`);
+        }
+        pts.push(`L ${W + 200} ${H}`);
+        pts.push(`L ${W + 200} 0`);
+      }
+      pts.push('Z');
+      return pts.join(' ');
+    }
+
+    // --- EXIT phase (runs on page load) ---
+    container.style.opacity = '1';
+    container.style.pointerEvents = 'all';
+
+    // Set initial full coverage
+    path1.setAttribute('d', buildWavePath(0, 80, 2.5, 0, false));
+    path2.setAttribute('d', buildWavePath(0, 60, 2, 1.2, false));
+    path3.setAttribute('d', buildWavePath(0, 100, 3, 0.8, false));
+
+    const exitDuration = 600;
+    const exitStart = performance.now();
+
+    function runExit(now) {
+      const elapsed = now - exitStart;
       
-      // Ensure it is an internal page navigation within the same origin
-      if (targetUrl && targetUrl.includes(window.location.hostname)) {
-        e.preventDefault();
+      // Path 3 leads, Path 2 is delayed by 80ms, Path 1 trails by 160ms
+      const t3 = Math.min(1, Math.max(0, elapsed / exitDuration));
+      const t2 = Math.min(1, Math.max(0, (elapsed - 80) / exitDuration));
+      const t1 = Math.min(1, Math.max(0, (elapsed - 160) / exitDuration));
+
+      const offset3 = 1440 * easeInOutCubic(t3);
+      const offset2 = 1440 * easeInOutCubic(t2);
+      const offset1 = 1440 * easeInOutCubic(t1);
+
+      path3.setAttribute('d', buildWavePath(offset3, 100, 3, 0.8, false));
+      path2.setAttribute('d', buildWavePath(offset2, 60, 2, 1.2, false));
+      path1.setAttribute('d', buildWavePath(offset1, 80, 2.5, 0, false));
+
+      if (t1 < 1) {
+        requestAnimationFrame(runExit);
+      } else {
+        container.style.opacity = '0';
+        container.style.pointerEvents = 'none';
+      }
+    }
+
+    requestAnimationFrame(runExit);
+
+    // --- ENTER phase ---
+    window.runRiverEnter = function(targetUrl) {
+      container.style.pointerEvents = 'all';
+      container.style.opacity = '1';
+
+      const enterDuration = 700;
+      const enterStart = performance.now();
+
+      function animateEnter(now) {
+        const elapsed = now - enterStart;
         
-        if (transitionOverlay) {
-          // Slide in from left
-          transitionOverlay.style.transformOrigin = 'left';
-          transitionOverlay.style.transform = 'scaleX(1)';
-          
-          setTimeout(() => {
-            window.location.href = targetUrl;
-          }, 500); // Match transition duration (0.5s)
+        // Path 1 leads, Path 2 is delayed by 80ms, Path 3 trails by 160ms
+        const t1 = Math.min(1, Math.max(0, elapsed / enterDuration));
+        const t2 = Math.min(1, Math.max(0, (elapsed - 80) / enterDuration));
+        const t3 = Math.min(1, Math.max(0, (elapsed - 160) / enterDuration));
+
+        const offset1 = -1440 + (1440 * easeInOutCubic(t1));
+        const offset2 = -1440 + (1440 * easeInOutCubic(t2));
+        const offset3 = -1440 + (1440 * easeInOutCubic(t3));
+
+        path1.setAttribute('d', buildWavePath(offset1, 80, 2.5, 0, true));
+        path2.setAttribute('d', buildWavePath(offset2, 60, 2, 1.2, true));
+        path3.setAttribute('d', buildWavePath(offset3, 100, 3, 0.8, true));
+
+        if (t3 < 1) {
+          requestAnimationFrame(animateEnter);
         } else {
           window.location.href = targetUrl;
         }
       }
+
+      requestAnimationFrame(animateEnter);
+    };
+
+    // Intercept all internal link clicks
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && !href.startsWith('http') && !href.startsWith('#') 
+          && !href.startsWith('mailto') && !href.startsWith('tel')
+          && !link.hasAttribute('target')) {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          window.runRiverEnter(href);
+        });
+      }
     });
-  });
+  }
 
 
   // ==========================================
@@ -64,15 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 3. PARALLAX HERO BACKGROUND
+  // 3. PARALLAX HERO CAROUSEL
   // ==========================================
-  const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
+  const heroCarousel = document.querySelector('.hero-carousel');
+  if (heroCarousel) {
     window.addEventListener('scroll', () => {
       const scrollPos = window.scrollY;
-      // Animate background translation at 0.4x scroll speed
       window.requestAnimationFrame(() => {
-        heroBg.style.transform = `translate3d(0, ${scrollPos * 0.4}px, 0)`;
+        heroCarousel.style.transform = `translate3d(0, ${scrollPos * 0.4}px, 0)`;
       });
     });
   }
@@ -351,6 +429,64 @@ document.addEventListener('DOMContentLoaded', () => {
         parentContainer.appendChild(successMsg);
       }
     });
+  }
+  // ==========================================
+  // 10. HERO CAROUSEL AUTO-PLAY
+  // ==========================================
+  function initHeroCarousel() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    if (slides.length === 0) return;
+
+    let currentIndex = 0;
+    const intervalTime = 4000;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    let carouselInterval = setInterval(nextSlide, intervalTime);
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(carouselInterval);
+        currentIndex = i;
+        showSlide(currentIndex);
+        carouselInterval = setInterval(nextSlide, intervalTime);
+      });
+    });
+
+    showSlide(currentIndex);
+  }
+
+  // Initialize Transitions, Carousel, and Video Panel
+  initRiverTransition();
+  initHeroCarousel();
+
+  const videoPanel = document.querySelector('.hero-video-panel');
+  if (videoPanel) {
+    setTimeout(() => {
+      videoPanel.classList.add('visible');
+    }, 1800);
   }
 
 });
