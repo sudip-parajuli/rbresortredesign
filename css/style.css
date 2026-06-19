@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 /* Design Tokens & Variables */
 :root {
@@ -18,7 +18,7 @@
   --card-bg: #ffffff;
   
   /* Fonts */
-  --font-heading: 'Cormorant Garamond', serif;
+  --font-heading: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
   
   /* UI Attributes */
@@ -181,6 +181,25 @@ header.scrolled {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  border-radius: 2px;
+  object-fit: contain;
+  transition: transform var(--transition-normal);
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
 }
 
 .logo-text {
@@ -1268,8 +1287,181 @@ footer {
   border-top: 1px solid rgba(232, 224, 208, 0.06);
   padding-top: 2rem;
   text-align: center;
-  font-size: 0.8rem;
-  color: rgba(232, 224, 208, 0.4);
+  font-size: 0.85rem;
+  color: rgba(232, 224, 208, 0.65);
+}
+
+/* Event Hall Cards (Quiet Luxury Editorial Layout) */
+.event-hall-card {
+  display: flex;
+  min-height: 520px;
+  background-color: var(--bg-light);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 4rem;
+  box-shadow: var(--card-shadow);
+}
+
+.event-hall-card:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.event-hall-img {
+  width: 55%;
+  overflow: hidden;
+  position: relative;
+}
+
+.event-hall-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.event-hall-card:hover .event-hall-img img {
+  transform: scale(1.05);
+}
+
+.event-hall-info {
+  width: 45%;
+  background: var(--bg-light);
+  padding: clamp(2rem, 5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.event-hall-info h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.event-hall-info p {
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.8rem;
+}
+
+.event-hall-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.spec-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.spec-val {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-accent);
+}
+
+/* Eyecatchy Gallery items border & overlay on hover */
+.gallery-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-dark);
+  border: 1px solid rgba(184, 134, 11, 0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.gallery-item:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 10px 25px rgba(184, 134, 11, 0.15);
+}
+
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(15, 15, 15, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.gallery-item-overlay i {
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  transform: scale(0.8);
+  transition: transform var(--transition-normal);
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+
+.gallery-item:hover .gallery-item-overlay i {
+  transform: scale(1);
+}
+
+/* Premium Form Submit Button & Form Inputs upgrade */
+.form-submit-btn {
+  background-color: var(--color-accent);
+  color: var(--bg-dark);
+  border: 1px solid var(--color-accent);
+  padding: 1rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  width: 100%;
+}
+
+.form-submit-btn:hover {
+  background-color: transparent;
+  color: var(--color-accent);
+}
+
+.form-panel input:focus, .form-panel textarea:focus, .form-panel select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.08);
+}
+
+/* Map Section */
+.map-section {
+  width: 100%;
+  height: 450px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  border: 1px solid rgba(184, 134, 11, 0.1);
+  border-radius: 2px;
+}
+
+.map-section iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(0.35) contrast(1.05);
+  transition: filter var(--transition-normal);
+}
+
+.map-section:hover iframe {
+  filter: grayscale(0) contrast(1);
 }
 
 /* Keyframes animations */
@@ -1303,11 +1495,13 @@ footer {
     gap: 3rem;
   }
   
-  .room-editorial-card, .room-editorial-card:nth-child(even) {
+  .room-editorial-card, .room-editorial-card:nth-child(even),
+  .event-hall-card, .event-hall-card:nth-child(even) {
     flex-direction: column;
   }
   
-  .room-editorial-img-side, .room-editorial-text-side {
+  .room-editorial-img-side, .room-editorial-text-side,
+  .event-hall-img, .event-hall-info {
     width: 100%;
   }
   
